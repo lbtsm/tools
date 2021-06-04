@@ -21,17 +21,17 @@ func NewRobot(webHook string) *Robot {
 }
 
 func (r *Robot) Text(content string, mentionedList, mentionedMobileList []string) error {
-	text := fmt.Sprintf(textContentFormat, content, mentionedList, mentionedMobileList)
+	text := fmt.Sprintf(formatOfText, fmt.Sprintf(textContentFormat, content, mentionedList, mentionedMobileList))
 	return r.request(r.webHook, strings.NewReader(text))
 }
 
 func (r *Robot) Markdown(content string) error {
-	text := fmt.Sprintf(markdownContentFormat, content)
+	text := fmt.Sprintf(formatOfMarkdown, fmt.Sprintf(markdownContentFormat, content))
 	return r.request(r.webHook, strings.NewReader(text))
 }
 
 func (r *Robot) Image(base64, md5 string) error {
-	text := fmt.Sprintf(imageContentFormat, base64, md5)
+	text := fmt.Sprintf(formatOfImage, fmt.Sprintf(imageContentFormat, base64, md5))
 	return r.request(r.webHook, strings.NewReader(text))
 }
 
@@ -41,7 +41,7 @@ func (r *Robot) News(news []NewsMsg) error {
 		return nil
 	}
 
-	text := fmt.Sprintf(newsContentFormat, string(data))
+	text := fmt.Sprintf(formatOfNews, fmt.Sprintf(newsContentFormat, string(data)))
 	return r.request(r.webHook, strings.NewReader(text))
 }
 

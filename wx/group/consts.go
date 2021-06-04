@@ -2,7 +2,7 @@ package group
 
 import "errors"
 
-const All = "@all"
+const All = "\"@all\""
 
 var applicationJson = "application/json"
 
